@@ -1,0 +1,10 @@
+quarkus:
+  log:
+    level: INFO
+  flyway:
+    migrate-at-start: true
+    locations: db/migration
+    
+            
+cron:
+  expr: "0 0/1 * * * ?"

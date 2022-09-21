@@ -1,0 +1,16 @@
+quarkus:
+  log:
+    level: INFO
+    category:
+      "org.acme.quarkus":
+        level: DEBUG
+  hibernate-orm:
+    log:
+      sql: true
+  flyway:
+    migrate-at-start: true
+    locations: db/migration,db/testdata
+    
+            
+cron:
+  expr: "0 0/1 * * * ?"

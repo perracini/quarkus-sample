@@ -1,0 +1,30 @@
+quarkus:
+  banner:
+    enabled: false
+  hibernate-orm:
+    database:
+      generation: none
+  micrometer:
+    binder:
+      http-server:
+        ignore-patterns:
+          - '/q.*'
+
+mp:
+  openapi:
+    extensions:
+      smallrye:
+        info:
+          title: Customer API
+          version: 0.0.1
+          description: API for school system
+          contact:
+            email: perracini.rafa@gmail.com
+            name: School APIs Support
+            url: https://github.com/perracini
+          license:
+            name: Apache 2.0
+            url: http://www.apache.org/licenses/LICENSE-2.0.html
+            
+cron:
+  expr: "0 0/1 * * * ?"
