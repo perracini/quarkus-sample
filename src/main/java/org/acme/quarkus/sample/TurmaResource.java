@@ -85,5 +85,12 @@ public class TurmaResource {
 		turmaService.update(turma);
 		return Response.status(Response.Status.NO_CONTENT).build();
 	}
+	
+	@GET
+	@Path("/teste")
+	@APIResponse(responseCode = "200", description = "Get All Turmas Not Finished", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(type = SchemaType.ARRAY, implementation = Turma.class)))
+	public Response getTeste() {
+		return Response.ok(turmaService.getTurmasEncerradas()).build();
+	}
 
 }

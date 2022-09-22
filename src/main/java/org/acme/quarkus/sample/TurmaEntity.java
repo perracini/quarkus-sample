@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -17,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Data;
 
-
+@NamedQuery(name="teste", query="SELECT t FROM Turma t where t.endDate <= ?1")
 @JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Entity( name = "Turma" )
 @Table( name = "turma" )
@@ -43,6 +44,9 @@ public class TurmaEntity {
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="aluno_id", nullable = true)
 	private AlunoEntity monitor;
+	
+	@Column(name = "status")
+	private String status;
 	
 }
 

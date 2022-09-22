@@ -39,6 +39,9 @@ public class TurmaConverter {
 	        if(entity.getMonitor() != null) {
 	        	turma.setAlunoId(entity.getMonitor().getAlunoId());
 	        }
+	        if(entity.getStatus() != null) {
+	        	turma.setStatus(entity.getStatus());
+	        }
 	        return turma;
 	}
 	
@@ -64,13 +67,16 @@ public class TurmaConverter {
 		}
 
 		if (domain.getStartDate() != null) {
-			turmaEntity.setStartDate(LocalDate.parse(domain.getStartDate(), DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+			turmaEntity.setStartDate(LocalDate.parse(changeFormatDate(domain.getStartDate())));
 		}
 		if (domain.getEndDate() != null) {
-			turmaEntity.setEndDate(LocalDate.parse(domain.getEndDate(), DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+			turmaEntity.setEndDate(LocalDate.parse(changeFormatDate(domain.getEndDate())));
 		}
 		if (domain.getTurmaId() != null) {
 			turmaEntity.setTurmaId(domain.getTurmaId());
+		}
+		if (domain.getStatus() != null) {
+			turmaEntity.setStatus(domain.getStatus());
 		}
 
 		return turmaEntity;
@@ -98,6 +104,9 @@ public class TurmaConverter {
 	        if(entity.getMonitor() != null) {
 	        	turma.setAluno(alunoConverter.entityToDto(entity.getMonitor()));
 	        }
+	        if(entity.getStatus() != null) {
+	        	turma.setStatus(entity.getStatus());
+	        }
 	        return turma;
 	}
 	
@@ -121,16 +130,26 @@ public class TurmaConverter {
 		}
 
 		if (domain.getStartDate() != null) {
-			entity.setStartDate(LocalDate.parse(domain.getStartDate(), DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+			entity.setStartDate(LocalDate.parse(changeFormatDate(domain.getStartDate())));
 		}
 		if (domain.getEndDate() != null) {
-			entity.setEndDate(LocalDate.parse(domain.getEndDate(), DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+			entity.setEndDate(LocalDate.parse(changeFormatDate(domain.getEndDate())));
 		}
 		if (domain.getTurmaId() != null) {
 			entity.setTurmaId(domain.getTurmaId());
 		}
-
+		if (domain.getStatus() != null) {
+			entity.setStatus(domain.getStatus());
+		}
 		return entity;
+	}
+	
+	public String changeFormatDate(String date) {
+	    DateTimeFormatter formatterFrom = DateTimeFormatter.ofPattern("dd-MM-yyyy"); // 1
+	    LocalDate localDateFrom = LocalDate.parse(date, formatterFrom); // 2
+
+	    DateTimeFormatter formatterTo = DateTimeFormatter.ISO_LOCAL_DATE; // 3
+	    return localDateFrom.format(formatterTo); //4
 	}
 
 }

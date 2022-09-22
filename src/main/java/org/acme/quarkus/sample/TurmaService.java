@@ -1,5 +1,6 @@
 package org.acme.quarkus.sample;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -75,6 +76,16 @@ public class TurmaService {
 			.collect(Collectors.toList());
     		 
     }
-
+    
+    
+    @Transactional
+    public List<Turma> getTurmasEncerradas() {
+    		
+    		return turmaRepository.find("#teste", LocalDate.now())
+    		.stream()
+			.map(element -> turmaConverter.entityToDto(element))
+			.collect(Collectors.toList());
+    		 
+    }
 }
 

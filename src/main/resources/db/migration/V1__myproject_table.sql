@@ -17,6 +17,7 @@ CREATE TABLE turma
   turma_id SERIAL PRIMARY KEY,
   end_date date DEFAULT NULL,
   start_date date DEFAULT NULL,
+  status TEXT NOT NULL,
   instrutor_id INT DEFAULT NULL,
   aluno_id INT DEFAULT NULL,
   CONSTRAINT turma_instrutor FOREIGN KEY (instrutor_id) REFERENCES instrutor (instrutor_id)

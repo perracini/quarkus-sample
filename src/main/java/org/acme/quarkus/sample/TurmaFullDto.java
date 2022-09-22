@@ -19,4 +19,5 @@ public class TurmaFullDto {
 
 	private Aluno aluno;
 
+	private String status;
 }

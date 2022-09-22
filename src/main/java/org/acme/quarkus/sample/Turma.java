@@ -19,4 +19,6 @@ public class Turma {
 
 	private Integer alunoId;
 	
+	private String status;
+	
 }
