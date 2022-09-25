@@ -36,10 +36,7 @@ public class AlunoService {
     
     public List<Aluno> findPage(int pageNumber, int pageSize) {
     	
-    	PanacheQuery<AlunoEntity> alunos = alunoRepository.findAll();
-    	List<AlunoEntity> lista = alunos.page(Page.of(pageNumber, pageSize)).list();
-    	
-    	return lista
+    	return alunoRepository.findAll().page(Page.of(pageNumber, pageSize)).list()
     			.stream()
     			.map(element -> alunoConverter.entityToDto(element))
     			.collect(Collectors.toList());
