@@ -1,7 +1,9 @@
 package org.acme.quarkus.sample;
 
 import java.net.URI;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -37,6 +39,8 @@ public class InstrutorResource {
 
 	private final InstrutorService instrutorService;
 	private final InstrutorConverter instrutorConverter;
+	private final TelefoneService telefoneService;
+	private final TelefoneConverter telefoneConverter;
 
 	@GET
 	@APIResponse(responseCode = "200", description = "Get All Instrutors", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(type = SchemaType.ARRAY, implementation = Instrutor.class)))
@@ -60,7 +64,12 @@ public class InstrutorResource {
 	@APIResponse(responseCode = "400", description = "Instrutor already exists for instrutorId", content = @Content(mediaType = MediaType.APPLICATION_JSON))
 	public Response post(@NotNull @Valid Instrutor instrutor, @Context UriInfo uriInfo) {
 		InstrutorEntity entity = instrutorService.save(instrutor);
+		
+		List<Telefone> tel = telefoneService.save(instrutor, entity).stream().map(t -> telefoneConverter.entityToDto(t)).collect(Collectors.toList());	
 		instrutor = instrutorConverter.entityToDto(entity);
+		if(tel != null)
+			instrutor.getTelefones().addAll(tel);
+
 		URI uri = uriInfo.getAbsolutePathBuilder().path(Integer.toString(instrutor.getInstrutorId())).build();
 		return Response.created(uri).entity(instrutor).build();
 	}
@@ -77,6 +86,7 @@ public class InstrutorResource {
 		if (!Objects.equals(instrutorId, instrutor.getInstrutorId())) {
 			throw new ServiceException("Path variable instrutorId does not match Instrutor.instrutorId");
 		}
+		telefoneService.update(instrutor);
 		instrutorService.update(instrutor);
 		return Response.status(Response.Status.NO_CONTENT).build();
 	}

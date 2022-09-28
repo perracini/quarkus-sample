@@ -9,7 +9,7 @@ import lombok.AllArgsConstructor;
 public class InstrutorConverter {
 
 	public InstrutorEntity dtoToEntity(Instrutor dto) {
-		if(dto == null) {
+		if (dto == null) {
 			return null;
 		}
 		InstrutorEntity entity = new InstrutorEntity();
@@ -22,7 +22,7 @@ public class InstrutorConverter {
 	}
 
 	public Instrutor entityToDto(InstrutorEntity entity) {
-		if(entity == null) {
+		if (entity == null) {
 			return null;
 		}
 		Instrutor dto = new Instrutor();
@@ -31,15 +31,16 @@ public class InstrutorConverter {
 
 		return dto;
 	}
-	
+
 	public InstrutorEntity dtoToEntity(Instrutor dto, InstrutorEntity entity) {
-		if(dto == null) {
+		if (dto == null) {
 			return null;
 		}
 		if (dto.getInstrutorId() != null) {
 			entity.setInstrutorId(dto.getInstrutorId());
 		}
 		entity.setName(dto.getName());
+
 		return entity;
 	}
 

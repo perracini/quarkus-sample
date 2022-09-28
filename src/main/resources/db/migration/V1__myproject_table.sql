@@ -35,3 +35,13 @@ CREATE TABLE matricula
   CONSTRAINT matriculaIdentity PRIMARY KEY(aluno_id, turma_id)
 );
 
+CREATE TABLE telefone
+(
+    telefone_id SERIAL PRIMARY KEY,
+    ddd TEXT,
+    number TEXT,
+    instrutor_id INT,
+    CONSTRAINT telefone_instrutor FOREIGN KEY (instrutor_id) REFERENCES instrutor (instrutor_id)
+    ON DELETE SET NULL
+);
+ALTER SEQUENCE telefone_telefone_id_seq RESTART 1000000;
