@@ -10,7 +10,7 @@ public class Scheduler {
 
     private AtomicInteger counter = new AtomicInteger();
 
-    public int get() {  
+    /*public int get() {  
         return counter.get();
     }
 
@@ -30,5 +30,5 @@ public class Scheduler {
     void cronJobWithExpressionInConfig() {
        counter.incrementAndGet();
        System.out.println("Cron expression configured in application.properties");
-    }
+    }*/
 }

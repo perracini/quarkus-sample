@@ -45,3 +45,20 @@ CREATE TABLE telefone
     ON DELETE SET NULL
 );
 ALTER SEQUENCE telefone_telefone_id_seq RESTART 1000000;
+
+CREATE TABLE titular
+(
+    titular_id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL
+);
+ALTER SEQUENCE titular_titular_id_seq RESTART 1000000;
+
+CREATE TABLE dependente
+(
+    dependente_id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL,
+    titular_id INT,
+    CONSTRAINT dependente_titular FOREIGN KEY (titular_id) REFERENCES titular (titular_id)
+    ON DELETE CASCADE
+);
+ALTER SEQUENCE dependente_dependente_id_seq RESTART 1000000;

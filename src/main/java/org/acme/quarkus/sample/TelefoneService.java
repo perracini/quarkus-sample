@@ -2,13 +2,11 @@ package org.acme.quarkus.sample;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
-import javax.ws.rs.NotFoundException;
 
 import org.acme.quarkus.exception.ServiceException;
 
