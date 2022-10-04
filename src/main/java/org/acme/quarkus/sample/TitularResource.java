@@ -80,7 +80,7 @@ public class TitularResource {
 			throw new ServiceException("Path variable titularId does not match Titular.titularId");
 		}
 		dependenteService.updateDependentesFromTitular(titular);
-		titularService.update(titular);
+		titularService.update(titular);//ao fazer este update, não mexer na lista de dependentes pois já foi setada na entidade
 		return Response.status(Response.Status.NO_CONTENT).build();
 	}
 	

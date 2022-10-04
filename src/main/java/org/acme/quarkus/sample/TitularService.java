@@ -68,7 +68,7 @@ public class TitularService {
 		}
 		TitularEntity entity = titularRepository.findByIdOptional(titular.getTitularId())
 				.orElseThrow(() -> new ServiceException("No Titular found for titularId[%s]", titular.getTitularId()));
-		entity = titularConverter.dtoToEntity(titular, entity);
+		entity = titularConverter.dtoToEntity(titular, entity);// este método não mexe na lista de dependentes pois já foi setada corretamente na entidade
 		titularRepository.persist(entity);
 	}
 
