@@ -34,5 +34,9 @@ public class TitularEntity {
         this.dependentes.add(dependente);
         dependente.setTitular(this);
     }
-
+    
+    public void removeDependente(DependenteEntity dependente) {
+        this.dependentes.remove(dependente);
+        dependente.setTitular(null);
+    }
 }

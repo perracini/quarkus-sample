@@ -67,14 +67,14 @@ public class DependenteService {
 		
 		List<DependenteEntity> toRemove = createRemoveListWhenUpdatingTitular(titular, entity);
 		updateDependentes(titular, entity);
-		removeDependentesFromTitular(toRemove);
+		removeDependentesFromTitular(toRemove, entity);
 
 	}
 	
 	private List<DependenteEntity> createRemoveListWhenUpdatingTitular(Titular titular, TitularEntity entity){
-		List<DependenteEntity> toCompare = dependenteRepository.findByTitular(entity);
+		List<DependenteEntity> toCompare = entity.getDependentes();
+		log.debug("Updating Dependente Lista tamanho: {}", entity.getDependentes().size());
 		List<DependenteEntity> toRemove = new ArrayList<>();
-		log.debug("Remover: {}", toRemove.size());
 		for(DependenteEntity ent : toCompare) {
 			boolean removing = true;
 			for (Dependente dep : titular.getDependentes()) {
@@ -86,6 +86,7 @@ public class DependenteService {
 				toRemove.add(ent);
 			}
 		}
+		log.debug("Remover: {}", toRemove.size());
 		return toRemove;
 	}
 	
@@ -102,8 +103,9 @@ public class DependenteService {
 		});
 	}
 	
-	private void removeDependentesFromTitular(List<DependenteEntity> toRemove) {
+	private void removeDependentesFromTitular(List<DependenteEntity> toRemove, TitularEntity entity) {
 		toRemove.forEach(rem -> {
+			entity.removeDependente(rem);
 			dependenteRepository.delete(rem);
 		});
 	}

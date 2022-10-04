@@ -1,5 +1,8 @@
 package org.acme.quarkus.sample;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.enterprise.context.ApplicationScoped;
 
 import lombok.AllArgsConstructor;
@@ -7,6 +10,8 @@ import lombok.AllArgsConstructor;
 @ApplicationScoped
 @AllArgsConstructor
 public class TitularConverter {
+	
+	private final DependenteConverter dependenteConverter;
 
 	public TitularEntity dtoToEntity(Titular dto) {
 		if(dto == null) {
@@ -17,7 +22,10 @@ public class TitularConverter {
 			entity.setTitularId(dto.getTitularId());
 		}
 		entity.setName(dto.getName());
-
+		for (Dependente d : dto.getDependentes()) {
+			DependenteEntity de = dependenteConverter.dtoToEntity(d);
+			entity.addDependente(de);
+		}
 		return entity;
 	}
 
@@ -28,7 +36,11 @@ public class TitularConverter {
 		Titular dto = new Titular();
 		dto.setTitularId(entity.getTitularId());
 		dto.setName(entity.getName());
-		
+		if(entity.getDependentes() != null) {
+			List<Dependente> dependentes = entity.getDependentes().stream()
+					.map(t -> dependenteConverter.entityToDto(t)).collect(Collectors.toList());
+			dto.getDependentes().addAll(dependentes);
+		}
 		return dto;
 	}
 	
@@ -40,6 +52,7 @@ public class TitularConverter {
 			entity.setTitularId(dto.getTitularId());
 		}
 		entity.setName(dto.getName());
+		
 		return entity;
 	}
 

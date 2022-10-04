@@ -56,9 +56,7 @@ public class TitularResource {
 	@APIResponse(responseCode = "400", description = "Titular already exists for titularId", content = @Content(mediaType = MediaType.APPLICATION_JSON))
 	public Response post(@NotNull @Valid Titular titular, @Context UriInfo uriInfo) {
 		TitularEntity entity = titularService.save(titular);
-		List<DependenteEntity> dependentes = dependenteService.saveList(titular.getDependentes(), entity);
 		Titular toReturn = titularService.converter(Optional.ofNullable(entity));
-		toReturn.setDependentes(dependenteService.converterList(dependentes));
 		URI uri = uriInfo.getAbsolutePathBuilder().path(Integer.toString(toReturn.getTitularId())).build();
 		return Response.created(uri).entity(toReturn).build();
 	}

@@ -24,8 +24,7 @@ public class TitularService {
 
 	private final TitularConverter titularConverter;
 	private final TitularRepository titularRepository;
-	private final DependenteConverter dependenteConverter;
-	private final DependenteRepository dependenteRepository;
+	//private final DependenteConverter dependenteConverter;
 
 	@Transactional
 	public TitularEntity save(@Valid Titular titular) {
@@ -39,12 +38,9 @@ public class TitularService {
 		TitularEntity entity = titularRepository.findByIdOptional(titularId).orElseThrow(
 				() -> new ServiceException("No Titular found for titularId[%s]", titularId));
 		
+		log.debug("tamanho da lista dependentes: {}", entity.getDependentes().size());
+		
 		Optional<Titular> titular = Optional.of(titularConverter.entityToDto(entity));
-		if (titular.isPresent()) {
-			List<Dependente> dependentes = dependenteRepository.findByTitular(entity).stream()
-					.map(t -> dependenteConverter.entityToDto(t)).collect(Collectors.toList());
-			titular.get().getDependentes().addAll(dependentes);
-		}
 		return titular;
 	}
 
