@@ -106,7 +106,7 @@ public class DependenteService {
 	private void removeDependentesFromTitular(List<DependenteEntity> toRemove, TitularEntity entity) {
 		toRemove.forEach(rem -> {
 			entity.removeDependente(rem);
-			dependenteRepository.delete(rem);
+			//dependenteRepository.delete(rem); //não necessita por ter o método remove e depois persistir a entidade, mas é mais didático
 		});
 	}
 

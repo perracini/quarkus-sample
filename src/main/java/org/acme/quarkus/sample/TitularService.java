@@ -24,7 +24,6 @@ public class TitularService {
 
 	private final TitularConverter titularConverter;
 	private final TitularRepository titularRepository;
-	//private final DependenteConverter dependenteConverter;
 
 	@Transactional
 	public TitularEntity save(@Valid Titular titular) {
@@ -73,8 +72,8 @@ public class TitularService {
 		titularRepository.persist(entity);
 	}
 
-	public List<TitularEntity> findAll() {
-		return titularRepository.findAll().list().stream()
+	public List<Titular> findAll() {
+		return titularRepository.findAll().list().stream().map( t -> titularConverter.entityToDto(t))
 				.collect(Collectors.toList());
 	}
 }
