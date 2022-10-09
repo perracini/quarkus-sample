@@ -74,6 +74,6 @@ public class TitularService {
 
 	public List<Titular> findAll() {
 		return titularRepository.findAll().list().stream().map( t -> titularConverter.entityToDto(t))
-				.collect(Collectors.toList());
+				.collect(Collectors.toList());//aqui se remover a conversão podemos ver o id retornando por conta da anotação na entidade Dependente sJsonIdentityInfo
 	}
 }

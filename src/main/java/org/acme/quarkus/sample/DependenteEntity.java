@@ -10,10 +10,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import lombok.Data;
 
+@JsonIdentityInfo(
+		  generator = ObjectIdGenerators.PropertyGenerator.class, 
+		  property = "titular_id")//alternativa para não usar JsonIgnore
 @Entity( name = "Dependente" )
 @Table( name = "dependente" )
 @Data
@@ -27,7 +32,7 @@ public class DependenteEntity {
     @Column(name= "name", nullable=false)
     private String name;
     
-    @JsonIgnore
+    //@JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "titular_id")
     private TitularEntity titular;
