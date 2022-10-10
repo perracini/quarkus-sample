@@ -38,7 +38,7 @@ public class MatriculaService {
     }
     
     public List<Object[]> getCustomData(){
-    	
+    	//usa a propriedade - se fosse native usaria a coluna
     	Query q = matriculaRepository.getEntityManager().createQuery("SELECT DISTINCT t.status, m.status, a.name FROM Turma t "
     			+ "JOIN Matricula m ON t.turmaId = m.matriculaIdentity.turmaId "
     			+ "JOIN Aluno a ON a.alunoId =  m.matriculaIdentity.alunoId");
