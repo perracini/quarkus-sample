@@ -1,8 +1,10 @@
 package org.acme.quarkus.sample;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
@@ -33,5 +35,17 @@ public class MatriculaService {
     	i.setAlunoId(alunoId);
     	Optional<MatriculaEntity> entity =  matriculaRepository.findByIdOptional(i); 	
     	return entity.map(element -> matriculaConverter.entityToDto(element));
+    }
+    
+    public List<Object[]> getCustomData(){
+    	
+    	Query q = matriculaRepository.getEntityManager().createQuery("SELECT DISTINCT t.status, m.status, a.name FROM Turma t "
+    			+ "JOIN Matricula m ON t.turmaId = m.matriculaIdentity.turmaId "
+    			+ "JOIN Aluno a ON a.alunoId =  m.matriculaIdentity.alunoId");
+    	@SuppressWarnings("unchecked")
+		List<Object[]> customData = q.getResultList();
+    	
+    	return customData;
+    	
     }
 }

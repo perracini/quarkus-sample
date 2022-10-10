@@ -57,7 +57,8 @@ public class TitularResource {
 	public Response post(@NotNull @Valid Titular titular, @Context UriInfo uriInfo) {
 		TitularEntity entity = titularService.save(titular);
 		Titular toReturn = titularService.converter(Optional.ofNullable(entity));
-		URI uri = uriInfo.getAbsolutePathBuilder().path(Integer.toString(toReturn.getTitularId())).build();
+		URI uri = uriInfo.getAbsolutePathBuilder().path(Integer.toString(entity.getTitularId())).build();
+		//URI uri = uriInfo.getAbsolutePathBuilder().path(Integer.toString(toReturn.getTitularId())).build();
 		return Response.created(uri).entity(toReturn).build();
 	}
 	

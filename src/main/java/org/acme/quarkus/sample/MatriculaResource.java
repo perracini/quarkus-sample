@@ -54,5 +54,14 @@ public class MatriculaResource {
 		return matriculaService.findById(alunoId, turmaId).map(matricula -> Response.ok(matricula).build())
 				.orElse(Response.status(Response.Status.NOT_FOUND).build());
 	}
+	
+	@GET
+	@APIResponse(responseCode = "200", description = "Get Matricula by alunoId and turmaId", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(type = SchemaType.OBJECT, implementation = Matricula.class)))
+	@APIResponse(responseCode = "404", description = "Matricula does not exist for alunoId and turmaId", content = @Content(mediaType = MediaType.APPLICATION_JSON))
+	public Response getCustomData() {
+		return Response.ok(matriculaService.getCustomData()).build();
+	}
+	
+	
 
 }

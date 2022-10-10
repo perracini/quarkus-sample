@@ -6,7 +6,5 @@ import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
 
 @ApplicationScoped
 public class MatriculaRepository implements PanacheRepositoryBase<MatriculaEntity, MatriculaIdentity>{
-	
-
 
 }
