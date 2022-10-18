@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.ws.rs.core.Response;
 
 import org.acme.quarkus.sample.app.dto.request.CreateEmployeeRequest;
+import org.acme.quarkus.sample.app.dto.request.UpdateEmployeeRequest;
 import org.acme.quarkus.sample.app.dto.response.GetEmployeeResponse;
 import org.acme.quarkus.sample.app.service.EmployeeServiceUseCaseMapper;
 import org.acme.quarkus.sample.domain.entity.EEmployee;
@@ -38,6 +39,18 @@ public class EmployeeUserCase implements IEmployeeUseCase{
 	public List<GetEmployeeResponse> getAll() {
 		
 		return mapper.eEmployeeToGetEmployeeResponse(gateway.getAll());
+	}
+
+	@Override
+	public Response update(UpdateEmployeeRequest employee) {
+		gateway.update(mapper.updateEmployeeRequestToEEmployee(employee));
+		
+		return Response.ok().build();
+	}
+
+	@Override
+	public void delete(Integer employeeId) {
+		gateway.delete(employeeId);
 	}
 
 	

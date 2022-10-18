@@ -14,8 +14,7 @@ public class EmployeeRepository implements IEmployeeRepository{
 	public Employee save(Employee employee) {
 		
 		employee.persist();
-		return employee;
-		
+		return employee;		
 	}
 
 	@Override
@@ -28,6 +27,13 @@ public class EmployeeRepository implements IEmployeeRepository{
 	public List<Employee> getAll() {
 		
 		return listAll();
+	}
+
+	@Override
+	public Employee update(Employee employee) {
+		
+		employee.persist();
+		return employee;
 	}
 
 }

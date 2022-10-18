@@ -12,4 +12,8 @@ public interface IEmployeeGateway {
 	
 	List<EEmployee> getAll();
 	
+	EEmployee update(final EEmployee eEmployee);
+	
+	void delete(Integer employeeId);
+	
 }

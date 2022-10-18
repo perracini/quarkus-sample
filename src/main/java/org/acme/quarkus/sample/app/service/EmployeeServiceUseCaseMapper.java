@@ -3,6 +3,7 @@ package org.acme.quarkus.sample.app.service;
 import java.util.List;
 
 import org.acme.quarkus.sample.app.dto.request.CreateEmployeeRequest;
+import org.acme.quarkus.sample.app.dto.request.UpdateEmployeeRequest;
 import org.acme.quarkus.sample.app.dto.response.GetEmployeeResponse;
 import org.acme.quarkus.sample.domain.entity.EEmployee;
 import org.mapstruct.InheritInverseConfiguration;
@@ -20,6 +21,8 @@ public interface EmployeeServiceUseCaseMapper {
 	GetEmployeeResponse eEmployeeToGetEmployeeResponse(final EEmployee eEmployee);
 	
 	List<GetEmployeeResponse> eEmployeeToGetEmployeeResponse(final List<EEmployee> eEmployee);
+	
+	EEmployee updateEmployeeRequestToEEmployee(final UpdateEmployeeRequest updateEmployeeRequest);
 	
 	
 	

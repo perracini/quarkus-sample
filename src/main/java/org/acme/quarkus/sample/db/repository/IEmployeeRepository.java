@@ -14,5 +14,7 @@ public interface IEmployeeRepository extends PanacheRepositoryBase<Employee, Int
 	Optional<Employee> findByOptionalId(Integer employeeId);
 	
 	List<Employee> getAll();
+	
+	Employee update(final Employee employee);
 
 }

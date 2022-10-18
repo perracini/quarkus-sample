@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ws.rs.core.Response;
 
 import org.acme.quarkus.sample.app.dto.request.CreateEmployeeRequest;
+import org.acme.quarkus.sample.app.dto.request.UpdateEmployeeRequest;
 import org.acme.quarkus.sample.app.dto.response.GetEmployeeResponse;
 
 public interface IEmployeeUseCase {
@@ -13,4 +14,8 @@ public interface IEmployeeUseCase {
 	GetEmployeeResponse findById(Integer employeeId);
 	
 	List<GetEmployeeResponse> getAll();
+	
+	Response update(UpdateEmployeeRequest employee);
+	
+	void delete(Integer employeeId);
 }

@@ -8,8 +8,10 @@ import javax.validation.Valid;
 import javax.ws.rs.core.Response;
 
 import org.acme.quarkus.sample.app.dto.request.CreateEmployeeRequest;
+import org.acme.quarkus.sample.app.dto.request.UpdateEmployeeRequest;
 import org.acme.quarkus.sample.app.dto.response.CreateEmployeeResponse;
 import org.acme.quarkus.sample.app.dto.response.GetEmployeeResponse;
+import org.acme.quarkus.sample.app.dto.response.UpdateEmployeeResponse;
 import org.acme.quarkus.sample.domain.usecase.IEmployeeUseCase;
 
 import io.quarkus.runtime.annotations.RegisterForReflection;
@@ -23,18 +25,27 @@ public class EmployeeServiceImpl implements IEmployeeService{
 
 	@Override
 	public CreateEmployeeResponse save(@Valid CreateEmployeeRequest createEmployeeRequest) {
-		return MapperResponse.eEmployeeToResponse(iEmployeeUseCase.save(createEmployeeRequest));
+		return MapperResponse.eEmployeeToSaveResponse(iEmployeeUseCase.save(createEmployeeRequest));
 	}
 	
 	static class MapperResponse {
 		
-		public static  CreateEmployeeResponse eEmployeeToResponse(final Response response) {
+		public static  CreateEmployeeResponse eEmployeeToSaveResponse(final Response response) {
 			CreateEmployeeResponse createEmployeeResponse = new CreateEmployeeResponse();
 			
 			createEmployeeResponse.setCode("Employee-saved-001");
 			createEmployeeResponse.setMessage("Employee included in database");
 			
 			return createEmployeeResponse;
+		}
+		
+		public static  UpdateEmployeeResponse eEmployeeToUpdateResponse(final Response response) {
+			UpdateEmployeeResponse updateEmployeeResponse = new UpdateEmployeeResponse();
+			
+			updateEmployeeResponse.setCode("Employee-updated-002");
+			updateEmployeeResponse.setMessage("Employee updated in database");
+			
+			return updateEmployeeResponse;
 		}
 		
 	}
@@ -48,5 +59,18 @@ public class EmployeeServiceImpl implements IEmployeeService{
 	public List<GetEmployeeResponse> getAll() {
 		return iEmployeeUseCase.getAll();
 	}
+
+	@Override
+	public UpdateEmployeeResponse update(@Valid UpdateEmployeeRequest updateEmployeeRequest) {
+		return MapperResponse.eEmployeeToUpdateResponse(iEmployeeUseCase.update(updateEmployeeRequest));
+	}
+
+	@Override
+	public void delete(Integer employeeId) {
+		iEmployeeUseCase.delete(employeeId);
+		
+	}
+	
+	
 
 }

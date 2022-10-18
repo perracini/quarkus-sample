@@ -10,6 +10,7 @@ import org.acme.quarkus.sample.domain.entity.EEmployee;
 import org.acme.quarkus.sample.infra.db.model.Employee;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 
 @Mapper(componentModel = "cdi", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
@@ -44,5 +45,7 @@ public interface EmployeeMapper {
 		return new ArrayList<>();
 		
 	}
+	
+	void updateEmployeeFromEEmployee(EEmployee eEmployee, @MappingTarget Employee employee);
 
 }
