@@ -62,3 +62,10 @@ CREATE TABLE dependente
     ON DELETE CASCADE
 );
 ALTER SEQUENCE dependente_dependente_id_seq RESTART 1000000;
+
+CREATE TABLE employee
+(
+   employee_id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL
+);
+ALTER SEQUENCE employee_employee_id_seq RESTART 1000000;
