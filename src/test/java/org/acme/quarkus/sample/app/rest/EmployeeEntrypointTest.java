@@ -42,21 +42,6 @@ public class EmployeeEntrypointTest {
 	}
 
 	@Test
-	public void getById() {
-		CreateEmployeeRequest employee = createEmployee();
-		CreateEmployeeResponse saved = given().contentType(ContentType.JSON).body(employee).post().then().statusCode(201).extract()
-				.as(CreateEmployeeResponse.class);
-	
-		GetEmployeeResponse got = given()
-				.when()
-				.get("/{employeeId}",  1000000)
-				.then()
-				.statusCode(200).extract().as(GetEmployeeResponse.class);
-		log.debug("id employee: {}", got.getEmployeeId());
-		assertThat(got.getEmployeeId()).isNotNull();
-	}
-
-	@Test
 	public void getByIdNotFound() {
 		given().when().get("/{employeerId}", 987654321).then().statusCode(500);
 	}
@@ -67,6 +52,21 @@ public class EmployeeEntrypointTest {
 		CreateEmployeeResponse saved = given().contentType(ContentType.JSON).body(employee).post().then().statusCode(201).extract()
 				.as(CreateEmployeeResponse.class);
 		assertThat(saved.getCode()).hasToString("Employee-saved-001");
+	}
+	
+	@Test
+	public void getById() {
+		/*CreateEmployeeRequest employee = createEmployee();
+		CreateEmployeeResponse saved = given().contentType(ContentType.JSON).body(employee).post().then().statusCode(201).extract()
+				.as(CreateEmployeeResponse.class);*/
+	
+		GetEmployeeResponse got = given()
+				.when()
+				.get("/{employeeId}",  1000000)
+				.then()
+				.statusCode(200).extract().as(GetEmployeeResponse.class);
+		log.debug("id employee: {}", got.getEmployeeId());
+		assertThat(got.getEmployeeId()).isNotNull();
 	}
 
 	@Test
@@ -97,6 +97,8 @@ public class EmployeeEntrypointTest {
 	
 	@Test
 	public void delete() {
+		CreateEmployeeRequest employee = createEmployee();
+		given().contentType(ContentType.JSON).body(employee).post().then().statusCode(201);
 		
 		 given()
 			.when()
