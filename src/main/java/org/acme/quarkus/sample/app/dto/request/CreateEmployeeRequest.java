@@ -1,6 +1,6 @@
 package org.acme.quarkus.sample.app.dto.request;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
 
 import io.quarkus.runtime.annotations.RegisterForReflection;
 import lombok.Getter;
@@ -12,7 +12,7 @@ import lombok.Setter;
 @RegisterForReflection
 public class CreateEmployeeRequest {
 	
-	@NotNull
+	@NotEmpty(message = "{Employee.name.required}")
 	private String name;
 
 }

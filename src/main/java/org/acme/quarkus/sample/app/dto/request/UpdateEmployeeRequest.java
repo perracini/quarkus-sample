@@ -11,6 +11,7 @@ import lombok.Setter;
 @RegisterForReflection
 public class UpdateEmployeeRequest {
 	
+	@NotNull
 	private Integer employeeId;
 	
 	@NotNull

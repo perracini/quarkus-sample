@@ -70,10 +70,12 @@ public class EmployeeDataProvider implements IEmployeeGateway {
 	public void delete(Integer employeeId) {
 		Optional<Employee> employee = repository.findByOptionalId(employeeId);
 
-		if (!employee.isPresent()) {
+		/*if (!employee.isPresent()) {
 			throw new ServiceException("Employee not found");
+		}*/
+		if (employee.isPresent()) {
+			repository.delete(employee.get());
 		}
-		repository.delete(employee.get());
 		return;
 	}
 

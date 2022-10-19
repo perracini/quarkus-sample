@@ -37,7 +37,7 @@ public class EmployeeEntrypoint {
 	@Tag(name = "add an Employee")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response save(@Valid CreateEmployeeRequest createEmployeeRequest) {
+	public Response save(@NotNull @Valid CreateEmployeeRequest createEmployeeRequest) {
 		CreateEmployeeResponse createEmployeeResponse = iEmployeeService.save(createEmployeeRequest);
 		return Response.status(201).entity(createEmployeeResponse).build();
 	}
