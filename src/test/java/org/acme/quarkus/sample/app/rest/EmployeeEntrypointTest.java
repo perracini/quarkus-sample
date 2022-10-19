@@ -17,6 +17,7 @@ import org.acme.quarkus.sample.app.dto.response.UpdateEmployeeResponse;
 import org.acme.quarkus.sample.db.repository.EmployeeRepository;
 import org.acme.quarkus.sample.infra.db.model.Employee;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -30,9 +31,6 @@ import lombok.extern.slf4j.Slf4j;
 @TestHTTPEndpoint(EmployeeEntrypoint.class)
 @Slf4j
 public class EmployeeEntrypointTest {
-	
-	 /*@InjectMock
-	 EmployeeRepository repository;*/
 	
 	@Test
 	public void getAll() {
@@ -48,9 +46,10 @@ public class EmployeeEntrypointTest {
 		CreateEmployeeRequest employee = createEmployee();
 		CreateEmployeeResponse saved = given().contentType(ContentType.JSON).body(employee).post().then().statusCode(201).extract()
 				.as(CreateEmployeeResponse.class);
+	
 		GetEmployeeResponse got = given()
 				.when()
-				.get("/{employeeId}", 1000000)
+				.get("/{employeeId}",  1000000)
 				.then()
 				.statusCode(200).extract().as(GetEmployeeResponse.class);
 		log.debug("id employee: {}", got.getEmployeeId());
@@ -98,9 +97,10 @@ public class EmployeeEntrypointTest {
 	
 	@Test
 	public void delete() {
+		
 		 given()
 			.when()
-			.delete("/{employeeId}", 1000000)
+			.delete("/{employeeId}", 1000001)
 			.then()
 			.statusCode(204);
 	}
