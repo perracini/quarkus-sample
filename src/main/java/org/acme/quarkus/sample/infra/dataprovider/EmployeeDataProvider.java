@@ -61,7 +61,7 @@ public class EmployeeDataProvider implements IEmployeeGateway {
 		}
 		mapper.updateEmployeeFromEEmployee(eEmployee, employee.get());
 		Employee employeeUpdate = repository.update(employee.get());
-		log.debug("employee saved: {} with name {}", employeeUpdate.getEmployeeId(), employeeUpdate.getName());
+		log.debug("employee updated: {} with name {}", employeeUpdate.getEmployeeId(), employeeUpdate.getName());
 		return mapper.employeeToEEmployee(employeeUpdate);
 	}
 
