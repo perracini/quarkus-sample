@@ -9,7 +9,7 @@ import javax.transaction.Transactional;
 
 import org.acme.quarkus.exception.ServiceException;
 import org.acme.quarkus.sample.AlunoService;
-import org.acme.quarkus.sample.db.repository.IEmployeeRepository;
+import org.acme.quarkus.sample.data.db.repository.IEmployeeRepository;
 import org.acme.quarkus.sample.domain.entity.EEmployee;
 import org.acme.quarkus.sample.domain.gateway.IEmployeeGateway;
 import org.acme.quarkus.sample.infra.db.model.Employee;

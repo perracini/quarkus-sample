@@ -1,10 +1,10 @@
-package org.acme.quarkus.sample.app.service;
+package org.acme.quarkus.sample.service;
 
 import java.util.List;
 
-import org.acme.quarkus.sample.app.dto.request.CreateEmployeeRequest;
-import org.acme.quarkus.sample.app.dto.request.UpdateEmployeeRequest;
-import org.acme.quarkus.sample.app.dto.response.GetEmployeeResponse;
+import org.acme.quarkus.sample.domain.dto.request.CreateEmployeeRequest;
+import org.acme.quarkus.sample.domain.dto.request.UpdateEmployeeRequest;
+import org.acme.quarkus.sample.domain.dto.response.GetEmployeeResponse;
 import org.acme.quarkus.sample.domain.entity.EEmployee;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;

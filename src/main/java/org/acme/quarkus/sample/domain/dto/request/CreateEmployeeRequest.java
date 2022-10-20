@@ -1,4 +1,4 @@
-package org.acme.quarkus.sample.app.dto.request;
+package org.acme.quarkus.sample.domain.dto.request;
 
 import javax.validation.constraints.NotEmpty;
 

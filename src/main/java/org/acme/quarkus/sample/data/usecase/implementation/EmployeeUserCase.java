@@ -1,4 +1,4 @@
-package org.acme.quarkus.sample.domain.usecase.implementation;
+package org.acme.quarkus.sample.data.usecase.implementation;
 
 import java.util.List;
 
@@ -6,13 +6,13 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.core.Response;
 
-import org.acme.quarkus.sample.app.dto.request.CreateEmployeeRequest;
-import org.acme.quarkus.sample.app.dto.request.UpdateEmployeeRequest;
-import org.acme.quarkus.sample.app.dto.response.GetEmployeeResponse;
-import org.acme.quarkus.sample.app.service.EmployeeServiceUseCaseMapper;
+import org.acme.quarkus.sample.domain.dto.request.CreateEmployeeRequest;
+import org.acme.quarkus.sample.domain.dto.request.UpdateEmployeeRequest;
+import org.acme.quarkus.sample.domain.dto.response.GetEmployeeResponse;
 import org.acme.quarkus.sample.domain.entity.EEmployee;
 import org.acme.quarkus.sample.domain.gateway.IEmployeeGateway;
 import org.acme.quarkus.sample.domain.usecase.IEmployeeUseCase;
+import org.acme.quarkus.sample.service.EmployeeServiceUseCaseMapper;
 
 @ApplicationScoped
 public class EmployeeUserCase implements IEmployeeUseCase{

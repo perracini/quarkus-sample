@@ -1,4 +1,4 @@
-package org.acme.quarkus.sample.app.dto.response;
+package org.acme.quarkus.sample.domain.dto.response;
 
 import lombok.Getter;
 import lombok.Setter;

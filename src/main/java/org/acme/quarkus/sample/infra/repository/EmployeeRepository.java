@@ -1,10 +1,11 @@
-package org.acme.quarkus.sample.db.repository;
+package org.acme.quarkus.sample.infra.repository;
 
 import java.util.List;
 import java.util.Optional;
 
 import javax.enterprise.context.ApplicationScoped;
 
+import org.acme.quarkus.sample.data.db.repository.IEmployeeRepository;
 import org.acme.quarkus.sample.infra.db.model.Employee;
 
 @ApplicationScoped

@@ -1,29 +1,22 @@
-package org.acme.quarkus.sample.app.rest;
+package org.acme.quarkus.sample.presentation;
 
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ResourceBundle;
 
-import javax.ws.rs.core.Response;
-
 import org.acme.quarkus.exception.ErrorResponse;
-import org.acme.quarkus.sample.AlunoService;
-import org.acme.quarkus.sample.app.dto.request.CreateEmployeeRequest;
-import org.acme.quarkus.sample.app.dto.request.UpdateEmployeeRequest;
-import org.acme.quarkus.sample.app.dto.response.CreateEmployeeResponse;
-import org.acme.quarkus.sample.app.dto.response.GetEmployeeResponse;
-import org.acme.quarkus.sample.app.dto.response.UpdateEmployeeResponse;
-import org.acme.quarkus.sample.db.repository.EmployeeRepository;
-import org.acme.quarkus.sample.infra.db.model.Employee;
+import org.acme.quarkus.sample.domain.dto.request.CreateEmployeeRequest;
+import org.acme.quarkus.sample.domain.dto.request.UpdateEmployeeRequest;
+import org.acme.quarkus.sample.domain.dto.response.CreateEmployeeResponse;
+import org.acme.quarkus.sample.domain.dto.response.GetEmployeeResponse;
+import org.acme.quarkus.sample.domain.dto.response.UpdateEmployeeResponse;
+import org.acme.quarkus.sample.presentation.EmployeeEntrypoint;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import io.quarkus.test.common.http.TestHTTPEndpoint;
 import io.quarkus.test.junit.QuarkusTest;
-import io.quarkus.test.junit.mockito.InjectMock;
 import io.restassured.http.ContentType;
 import lombok.extern.slf4j.Slf4j;
 

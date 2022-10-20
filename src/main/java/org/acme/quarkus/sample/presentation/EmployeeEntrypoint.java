@@ -1,4 +1,4 @@
-package org.acme.quarkus.sample.app.rest;
+package org.acme.quarkus.sample.presentation;
 
 import java.util.Objects;
 
@@ -18,11 +18,11 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.acme.quarkus.exception.ServiceException;
-import org.acme.quarkus.sample.app.dto.request.CreateEmployeeRequest;
-import org.acme.quarkus.sample.app.dto.request.UpdateEmployeeRequest;
-import org.acme.quarkus.sample.app.dto.response.CreateEmployeeResponse;
-import org.acme.quarkus.sample.app.dto.response.UpdateEmployeeResponse;
-import org.acme.quarkus.sample.app.service.IEmployeeService;
+import org.acme.quarkus.sample.domain.dto.request.CreateEmployeeRequest;
+import org.acme.quarkus.sample.domain.dto.request.UpdateEmployeeRequest;
+import org.acme.quarkus.sample.domain.dto.response.CreateEmployeeResponse;
+import org.acme.quarkus.sample.domain.dto.response.UpdateEmployeeResponse;
+import org.acme.quarkus.sample.service.IEmployeeService;
 import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 

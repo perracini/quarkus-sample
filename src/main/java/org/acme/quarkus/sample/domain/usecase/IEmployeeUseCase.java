@@ -4,9 +4,9 @@ import java.util.List;
 
 import javax.ws.rs.core.Response;
 
-import org.acme.quarkus.sample.app.dto.request.CreateEmployeeRequest;
-import org.acme.quarkus.sample.app.dto.request.UpdateEmployeeRequest;
-import org.acme.quarkus.sample.app.dto.response.GetEmployeeResponse;
+import org.acme.quarkus.sample.domain.dto.request.CreateEmployeeRequest;
+import org.acme.quarkus.sample.domain.dto.request.UpdateEmployeeRequest;
+import org.acme.quarkus.sample.domain.dto.response.GetEmployeeResponse;
 
 public interface IEmployeeUseCase {
 	Response save(CreateEmployeeRequest employee);

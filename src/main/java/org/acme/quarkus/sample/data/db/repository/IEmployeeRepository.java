@@ -1,4 +1,4 @@
-package org.acme.quarkus.sample.db.repository;
+package org.acme.quarkus.sample.data.db.repository;
 
 import java.util.List;
 import java.util.Optional;
