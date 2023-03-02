@@ -37,7 +37,7 @@ public interface IGateway<E extends PanacheEntityBase, I> {
 		return getRepository().find(page);
 	}
 	
-	//exemplo query específica select
+	//exemplo query específica para um select
     default Pagination<E> getAllByStartingLetter(PageRequest page){
     	
     	String teste = "'B%'";
