@@ -1,6 +1,6 @@
 package org.acme.quarkus.sample.infra.db.model;
 
-import org.acme.quarkus.sample.data.db.repository.IEmployeeRepository;
+import org.acme.quarkus.sample.data.db.repository.IRepository;
 import org.hibernate.Session;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -12,7 +12,7 @@ import io.quarkus.test.junit.mockito.InjectMock;
 public class EmployeeTest {
 	
 	@InjectMock
-	IEmployeeRepository repository;
+	IRepository<Employee,Integer> repository;
 	
 	@InjectMock
 	Session session;

@@ -3,6 +3,7 @@ package org.acme.quarkus.sample.infra.dataprovider;
 import javax.inject.Inject;
 
 import org.acme.quarkus.sample.domain.entity.EEmployee;
+import org.acme.quarkus.sample.infra.db.model.Employee;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -17,11 +18,11 @@ public class EmployeeDataProviderTest {
 	
 	@Test
 	void save() {
-		EEmployee employee = new EEmployee();
+		Employee employee = new Employee();
 		employee.setName(RandomStringUtils.randomAlphabetic(10));
 		
-		EEmployee saved = employeeDataProvider.save(employee);
-		Assertions.assertNotNull(saved);
+		employeeDataProvider.save(employee);
+		Assertions.assertNotNull(employee);
 	}
 	
 }

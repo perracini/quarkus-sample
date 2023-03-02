@@ -14,7 +14,7 @@ public class RequestDtoTest {
 	@Test
 	@DisplayName("testPostCreateEmployeeRequest")
 	void testPostCreateEmployeeRequest() {
-		CreateEmployeeRequest request = new CreateEmployeeRequest();
+		EmployeeRequest request = new EmployeeRequest();
 		request.setName(RandomStringUtils.randomAlphabetic(10));
 		assertThat(request.getName()).isNotNull();
 	}

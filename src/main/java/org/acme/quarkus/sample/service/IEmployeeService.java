@@ -1,25 +1,25 @@
 package org.acme.quarkus.sample.service;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
-import org.acme.quarkus.sample.domain.dto.request.CreateEmployeeRequest;
-import org.acme.quarkus.sample.domain.dto.request.UpdateEmployeeRequest;
-import org.acme.quarkus.sample.domain.dto.response.CreateEmployeeResponse;
-import org.acme.quarkus.sample.domain.dto.response.GetEmployeeResponse;
-import org.acme.quarkus.sample.domain.dto.response.UpdateEmployeeResponse;
+import org.acme.quarkus.sample.domain.dto.request.EmployeeRequest;
+import org.acme.quarkus.sample.domain.dto.request.PageRequest;
+import org.acme.quarkus.sample.domain.dto.request.Pagination;
+import org.acme.quarkus.sample.domain.dto.response.EmployeeResponse;
+
 
 public interface IEmployeeService {
 	
-	CreateEmployeeResponse save(final @Valid CreateEmployeeRequest createEmployeeRequest);
+	void save(final @Valid EmployeeRequest createEmployeeRequest);
 	
-	GetEmployeeResponse findById(Integer employeeId);
+	EmployeeResponse findById(Integer employeeId);
 	
-	List<GetEmployeeResponse> getAll();
+	Pagination<EmployeeResponse> getAll(PageRequest page);
 	
-	UpdateEmployeeResponse update(final @Valid UpdateEmployeeRequest updateEmployeeRequest);
+	void update(final @Valid EmployeeRequest updateEmployeeRequest);
 	
 	void delete(Integer employeeId);
+	
+	Pagination<EmployeeResponse> getAllByStartingLetter(PageRequest page);
 
 }

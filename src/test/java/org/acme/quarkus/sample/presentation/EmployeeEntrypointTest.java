@@ -6,13 +6,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.ResourceBundle;
 
 import org.acme.quarkus.exception.ErrorResponse;
-import org.acme.quarkus.sample.domain.dto.request.CreateEmployeeRequest;
-import org.acme.quarkus.sample.domain.dto.request.UpdateEmployeeRequest;
-import org.acme.quarkus.sample.domain.dto.response.CreateEmployeeResponse;
-import org.acme.quarkus.sample.domain.dto.response.GetEmployeeResponse;
-import org.acme.quarkus.sample.domain.dto.response.UpdateEmployeeResponse;
-import org.acme.quarkus.sample.presentation.EmployeeEntrypoint;
+
+import org.acme.quarkus.sample.domain.dto.request.EmployeeRequest;
+
+import org.acme.quarkus.sample.domain.dto.response.EmployeeResponse;
+
 import org.apache.commons.lang3.RandomStringUtils;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import io.quarkus.test.common.http.TestHTTPEndpoint;
@@ -41,10 +41,10 @@ public class EmployeeEntrypointTest {
 
 	@Test
 	public void post() {
-		CreateEmployeeRequest employee = createEmployee();
-		CreateEmployeeResponse saved = given().contentType(ContentType.JSON).body(employee).post().then().statusCode(201).extract()
-				.as(CreateEmployeeResponse.class);
-		assertThat(saved.getCode()).hasToString("Employee-saved-001");
+		EmployeeRequest employee = createEmployee();
+		EmployeeResponse saved = given().contentType(ContentType.JSON).body(employee).post().then().statusCode(201).extract()
+				.as(EmployeeResponse.class);
+		Assertions.assertNotNull(saved.getEmployeeId());
 	}
 	
 	@Test
@@ -53,18 +53,18 @@ public class EmployeeEntrypointTest {
 		CreateEmployeeResponse saved = given().contentType(ContentType.JSON).body(employee).post().then().statusCode(201).extract()
 				.as(CreateEmployeeResponse.class);*/
 	
-		GetEmployeeResponse got = given()
+		EmployeeResponse got = given()
 				.when()
 				.get("/{employeeId}",  1000000)
 				.then()
-				.statusCode(200).extract().as(GetEmployeeResponse.class);
+				.statusCode(200).extract().as(EmployeeResponse.class);
 		log.debug("id employee: {}", got.getEmployeeId());
 		assertThat(got.getEmployeeId()).isNotNull();
 	}
 
 	@Test
 	public void postFailNoName() {
-		CreateEmployeeRequest employee = createEmployee();
+		EmployeeRequest employee = createEmployee();
 		employee.setName(null);
 		ErrorResponse errorResponse = given().contentType(ContentType.JSON).body(employee).post().then().statusCode(400)
 				.extract().as(ErrorResponse.class);
@@ -76,21 +76,21 @@ public class EmployeeEntrypointTest {
 
 	@Test
 	public void put() {
-		GetEmployeeResponse got = given()
+		EmployeeResponse got = given()
 				.when()
 				.get("/{employeeId}", 1000000)
 				.then()
-				.statusCode(200).extract().as(GetEmployeeResponse.class);
+				.statusCode(200).extract().as(EmployeeResponse.class);
 		log.debug("id employee 2: {}", got.getEmployeeId());
-		UpdateEmployeeRequest employee = updateEmployee(got.getEmployeeId());
-		UpdateEmployeeResponse response = given().contentType(ContentType.JSON).body(employee).put("/{employeeId}", employee.getEmployeeId()).then().statusCode(200).extract()
-				.as(UpdateEmployeeResponse.class);
-		assertThat(response.getCode()).hasToString("Employee-updated-002");
+		EmployeeRequest employee = updateEmployee(got.getEmployeeId());
+		EmployeeResponse response = given().contentType(ContentType.JSON).body(employee).put("/{employeeId}", employee.getEmployeeId()).then().statusCode(200).extract()
+				.as(EmployeeResponse.class);
+		Assertions.assertNotNull(response.getEmployeeId());
 	}
 	
 	@Test
 	public void delete() {
-		CreateEmployeeRequest employee = createEmployee();
+		EmployeeRequest employee = createEmployee();
 		given().contentType(ContentType.JSON).body(employee).post().then().statusCode(201);
 		
 		 given()
@@ -100,14 +100,14 @@ public class EmployeeEntrypointTest {
 			.statusCode(204);
 	}
 
-	private CreateEmployeeRequest createEmployee() {
-		CreateEmployeeRequest employee = new CreateEmployeeRequest();
+	private EmployeeRequest createEmployee() {
+		EmployeeRequest employee = new EmployeeRequest();
 		employee.setName(RandomStringUtils.randomAlphabetic(10));
 		return employee;
 	}
 	
-	private UpdateEmployeeRequest updateEmployee(Integer id) {
-		UpdateEmployeeRequest employee = new UpdateEmployeeRequest();
+	private EmployeeRequest updateEmployee(Integer id) {
+		EmployeeRequest employee = new EmployeeRequest();
 		employee.setEmployeeId(id);
 		employee.setName(RandomStringUtils.randomAlphabetic(10));
 		return employee;

@@ -63,9 +63,37 @@ CREATE TABLE dependente
 );
 ALTER SEQUENCE dependente_dependente_id_seq RESTART 1000000;
 
-CREATE TABLE employee
+CREATE TABLE um 
 (
-   employee_id SERIAL PRIMARY KEY,
+  um_id SERIAL PRIMARY KEY,
+  name TEXT NOT NULL
+);
+ALTER SEQUENCE um_um_id_seq RESTART 1000000;
+
+CREATE TABLE dois 
+(
+  dois_id SERIAL PRIMARY KEY,
+  refer TEXT NOT NULL,
+  um_id INT,
+  CONSTRAINT dois_um FOREIGN KEY (um_id) REFERENCES um (um_id)
+);
+ALTER SEQUENCE dois_dois_id_seq RESTART 1000000;
+
+CREATE TABLE department
+(
+    department_id SERIAL PRIMARY KEY,
     name TEXT NOT NULL
 );
+ALTER SEQUENCE department_department_id_seq RESTART 1000000;
+
+CREATE TABLE employee
+(
+    employee_id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL,
+    department_id INT,
+    FOREIGN KEY (department_id) REFERENCES department(department_id) ON DELETE CASCADE
+);
 ALTER SEQUENCE employee_employee_id_seq RESTART 1000000;
+
+
+
